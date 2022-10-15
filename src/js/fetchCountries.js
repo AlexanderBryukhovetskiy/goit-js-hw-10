@@ -6,12 +6,16 @@ export function fetchCountries(name){
 
     return fetch(`${URL}/${name}?fields=name,capital,population,flags,languages`)
         .then(response => {
-            if (!response.ok || response.status === 404) {
+            if (!response.ok) {
                 throw new Error()
             }
+            
             return response.json();
         })
         .catch(error => {
+            if (response.status === 404){
+                Notiflix.Notify.warning('No matches found. Please enter correct name.');
+            }
             console.log(error);
     })
 }
