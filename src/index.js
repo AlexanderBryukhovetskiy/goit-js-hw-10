@@ -40,7 +40,7 @@ function onSearch (event) {
         //console.log("Number of matches by request : ", countries.length);
         let markup = '';
 
-        if (countries.length > 10 || countries.length === undefined ) {
+        if (countries.length > 10 || !countries.length) {
             countryList.innerHTML = '';
             countryInfo.innerHTML = '';
             Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
