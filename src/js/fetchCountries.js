@@ -2,7 +2,7 @@
 
 //import {countryList, countryInfo} from "./refs";
 
-//import { emptyMarkup } from "./markupFunctions";  //  рендер пустої розмітки
+import { emptyMarkup } from "./markupFunctions";  //  рендер пустої розмітки
 import Notiflix from "notiflix";
 
 const URL = 'https://restcountries.com/v3.1/name';
@@ -13,16 +13,15 @@ export function fetchCountries(name){
         .then(response => {
 
             if (!response.ok || response.status === 404) {
-                
-                throw new Error('No matches found. Please enter correct name.');
+
+                throw new Error();
             }
+
             return response.json();
         })
         .catch(error => {
-
-            Notiflix.Notify.warning(error);
-
-            //();//рендерить пусту розмітку
-           // console.log(error);
+            
+            Notiflix.Notify.failure('No matches found. Please enter correct name.', emptyMarkup());
+            
     })
 }
