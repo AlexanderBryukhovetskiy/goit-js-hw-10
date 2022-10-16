@@ -9,13 +9,15 @@ export function fetchCountries(name){
             if (!response.ok) {
                 throw new Error()
             }
+            if (response.status === 404){
+                Notiflix.Notify.warning('No matches found. Please enter correct name.');
+                throw new Error();
+            }
             
             return response.json();
         })
         .catch(error => {
-            if (response.status === 404){
-                Notiflix.Notify.warning('No matches found. Please enter correct name.');
-            }
+           
             console.log(error);
     })
 }

@@ -1,3 +1,4 @@
+
 export function renderCountriesListMarkup (countries) {
     //console.log('it is countries inside renderCountriesListMarkup(): ', countries);
     const shortMarkup = countries.reduce((acc, {name, flags} = country) => 
