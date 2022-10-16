@@ -1,3 +1,9 @@
+import { countryList, countryInfo } from './refs';
+
+export function emptyMarkup () {
+    countryList.innerHTML = '';
+    countryInfo.innerHTML = '';
+  }
 
 export function renderCountriesListMarkup (countries) {
     //console.log('it is countries inside renderCountriesListMarkup(): ', countries);

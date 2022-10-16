@@ -19,23 +19,23 @@ import './css/styles.css';
 import Notiflix from 'notiflix';
 import debounce from 'lodash.debounce';
 
+import { searchFormInput, countryList, countryInfo } from './js/refs';
 import { fetchCountries } from "./js/fetchCountries";
-import { renderCountriesListMarkup, renderFullInfoMarkup } from "./js/markupFunctions";
+import { emptyMarkup, renderCountriesListMarkup, renderFullInfoMarkup } from "./js/markupFunctions";
+
 const DEBOUNCE_DELAY = 300;
 
-const searchForm = document.querySelector('input#search-box');
-const countryList = document.querySelector('.country-list');
-const countryInfo = document.querySelector('.country-info');
-
-//const name = document.querySelector('input#search-box').value.trim();
-
-
-searchForm.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
+searchFormInput.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
 function onSearch (event) {
     event.preventDefault();
 
     const name = document.querySelector('input#search-box').value.trim();
+    
+    if (name === '') { 
+      emptyMarkup();
+      return
+    }
 
     fetchCountries(name).then( countries => {
         //console.log("Number of matches by request : ", countries.length);
