@@ -1,5 +1,7 @@
 //`https://restcountries.com/v3.1/${name}?fields=capital,population,flags,languages`
 
+import {countryList, countryInfo} from "./markupFunctions";
+
 const URL = 'https://restcountries.com/v3.1/name';
 
 export function fetchCountries(name){
@@ -11,6 +13,8 @@ export function fetchCountries(name){
             }
             if (response.status === 404){
                 Notiflix.Notify.warning('No matches found. Please enter correct name.');
+                countryList.innerHTML = '';
+                countryInfo.innerHTML = '';
                 throw new Error();
             }
             
