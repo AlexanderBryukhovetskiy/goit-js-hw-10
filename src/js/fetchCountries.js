@@ -13,6 +13,7 @@ export function fetchCountries(name){
         .then(response => {
 
             if (!response.ok || response.status === 404) {
+                
                 throw new Error('No matches found. Please enter correct name.');
             }
             return response.json();
@@ -22,6 +23,6 @@ export function fetchCountries(name){
             Notiflix.Notify.warning(error);
 
             //();//рендерить пусту розмітку
-            console.log(error);
+           // console.log(error);
     })
 }
