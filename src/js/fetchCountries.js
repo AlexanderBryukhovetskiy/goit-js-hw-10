@@ -13,15 +13,13 @@ export function fetchCountries(name){
         .then(response => {
 
             if (!response.ok || response.status === 404) {
-
                 throw new Error();
             }
-
             return response.json();
         })
         .catch(error => {
             
             Notiflix.Notify.failure('No matches found. Please enter correct name.', emptyMarkup());
-            
-    })
+            console.log(error);
+        })
 }

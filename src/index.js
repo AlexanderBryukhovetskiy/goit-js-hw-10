@@ -37,30 +37,35 @@ function onSearch (event) {
       return
     }
 
-    fetchCountries(name).then( countries => {
+    fetchCountries(name)
+    .then( countries => {
         //console.log("Number of matches by request : ", countries.length);
         let markup = '';
 
         if (countries.length > 10) {
-          countryList.innerHTML = '';
-          countryInfo.innerHTML = '';
+          emptyMarkup();
           Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
 
         } else if (countries.length >= 2 && countries.length <= 10) {
-            countryList.innerHTML = '';
-            countryInfo.innerHTML = '';
+          emptyMarkup();
 
-            markup = renderCountriesListMarkup(countries);
-            countryList.innerHTML = markup;  
-            //console.log(markup);
+          markup = renderCountriesListMarkup(countries);
+          countryList.innerHTML = markup;  
+          //console.log(markup);
 
-          }  else if (countries.length === 1) {
-            countryList.innerHTML = '';
-            countryInfo.innerHTML = '';
+          } else if (countries.length === 1) {
+            emptyMarkup();
 
             markup = renderFullInfoMarkup(countries);
             countryInfo.innerHTML = markup;
             //console.log(markup);
+
+            } else {
+              throw new Error();
             }
+    })
+    .catch(error => {
+      //emptyMarkup();
+      //console.log(error);
     })
 }
