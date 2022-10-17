@@ -19,7 +19,7 @@ export function fetchCountries(name){
         })
         .catch(error => {
             
-            Notiflix.Notify.failure('No matches found. Please enter correct name.', emptyMarkup());
+            Notiflix.Notify.failure('Oops, there is no country with that name', emptyMarkup());
             console.log(error);
         })
 }
